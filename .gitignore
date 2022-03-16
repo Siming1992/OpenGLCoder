@@ -1,0 +1,47 @@
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+
+*.vscode
+*.vs/
+
+# Project Property Configuration
+# *.vcxproj
+# *.vcxproj.filters
+# *.vcxproj.user
+
+# Directories
+**bin/
+**bin-int/
+
+# Files
+*.user
+*imgui.ini
+
+# ===================================== #
+# JetBrains Rider generated #
+# ===================================== #
+*.idea
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
