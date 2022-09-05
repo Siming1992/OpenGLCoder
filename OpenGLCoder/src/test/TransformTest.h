@@ -2,9 +2,6 @@
 
 #include "Test.h"
 
-#include "Renderer.h"
-#include "Texture.h"
-
 namespace test {
 	class TransformTest : public Test
 	{

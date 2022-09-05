@@ -4,6 +4,7 @@
 #include <imgui/imgui.h>
 
 #include "test/TransformTest.h"
+#include "test/TransformBoxTest.h"
 
 namespace test {
 
@@ -11,6 +12,7 @@ namespace test {
 		:m_CurrentTest(testCurrentPointer)
 	{
 		RegisterTest<test::TransformTest>("Transform Texture");
+		RegisterTest<test::TransformBoxTest>("TransformBox Texture");
 	}
 
 	TestMenu::~TestMenu()

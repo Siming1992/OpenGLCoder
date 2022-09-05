@@ -63,6 +63,12 @@
     <ClCompile Include="src\test\TransformTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\test\TransformBoxTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Camera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -968,6 +974,12 @@
     <ClInclude Include="src\test\TransformTest.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\test\TransformBoxTest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\glm\detail\func_common.inl">
@@ -1388,6 +1400,7 @@
       <Filter>头文件</Filter>
     </None>
     <None Include="res\shaders\Basic.shader" />
+    <None Include="res\shaders\TransformBox.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\awesomeface.png">

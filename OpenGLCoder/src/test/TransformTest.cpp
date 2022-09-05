@@ -1,9 +1,5 @@
 #include "TransformTest.h"
 
-#include <imgui/imgui.h>
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
-
 namespace test {
 	TransformTest::TransformTest() {
 
@@ -76,7 +72,9 @@ namespace test {
 
 	TransformTest::~TransformTest()
 	{
-
+		glDeleteVertexArrays(1, &VAO);
+		glDeleteBuffers(1, &VBO);
+		glDeleteBuffers(1, &EBO);
 	}
 
 	void TransformTest::OnUpdate(float deltaTime)
