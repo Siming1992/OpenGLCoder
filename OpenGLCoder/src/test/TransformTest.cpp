@@ -5,7 +5,7 @@ namespace test {
 
 		// build and compile our shader program
 		// ------------------------------------
-		shader = std::make_unique<Shader>("res/shaders/Basic.shader");
+		shader = std::make_unique<Shader>("res/shaders/Transform/Basic.shader");
 
 		// set up vertex data (and buffer(s)) and configure vertex attributes
 		// ------------------------------------------------------------------

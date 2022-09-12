@@ -6,7 +6,7 @@ namespace test {
 		camera = std::make_unique<Camera>();
 
 		// build and compile our shader program
-		shader = std::make_unique<Shader>("res/shaders/TransformBox.shader");
+		shader = std::make_unique<Shader>("res/shaders/Transform/TransformBox.shader");
 		// set up vertex data (and buffer(s)) and configure vertex attributes
 		// ------------------------------------------------------------------
 		float vertices[] = {
@@ -128,17 +128,17 @@ namespace test {
 
 		ImGui::Begin("TransformBoxTest");
 
-		ImGui::Text(std::to_string(screenWidth / screenHeight).c_str());
+		ImGui::Text(std::to_string(camera->screenWidth / camera->screenHeight).c_str());
 
-		ImGui::SliderFloat("screenWidth", &screenWidth, 200, 1000);
-		ImGui::SliderFloat("screenHeight", &screenHeight, 200, 1000);
+		ImGui::SliderFloat("screenWidth", &camera->screenWidth, 200, 1000);
+		ImGui::SliderFloat("screenHeight", &camera->screenHeight, 200, 1000);
 		//ImGui::SliderFloat("fov", &fov, 30, 90);
 		ImGui::Text("FOV: ");
 		ImGui::SameLine();
 		ImGui::Text(std::to_string(camera->Zoom).c_str());
 
 		ImGui::End();
-		proj = glm::perspective(glm::radians(camera->Zoom), screenWidth / screenHeight, 0.1f, 100.0f);
+		proj = glm::perspective(glm::radians(camera->Zoom), camera->screenWidth / camera->screenHeight, 0.1f, 100.0f);
 
 		shader->SetMat4("proj", proj);
 	}

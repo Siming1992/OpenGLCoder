@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\test\LightingTest.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\glad.c" />
@@ -179,6 +180,7 @@
     <ClCompile Include="src\test\TransformBoxTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\test\LightingTest.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Shader.h" />
@@ -484,8 +486,10 @@
     <ClInclude Include="src\test\TransformBoxTest.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\Basic.shader" />
-    <None Include="res\shaders\TransformBox.shader" />
+    <None Include="res\shaders\Lighting\LightCube.shader" />
+    <None Include="res\shaders\Lighting\Lighting.shader" />
+    <None Include="res\shaders\Transform\Basic.shader" />
+    <None Include="res\shaders\Transform\TransformBox.shader" />
     <None Include="src\vendor\glm\detail\func_common.inl" />
     <None Include="src\vendor\glm\detail\func_common_simd.inl" />
     <None Include="src\vendor\glm\detail\func_exponential.inl" />
@@ -629,6 +633,9 @@
   <ItemGroup>
     <Image Include="res\Textures\awesomeface.png" />
     <Image Include="res\Textures\container.jpg" />
+    <Image Include="res\Textures\container2.png" />
+    <Image Include="res\Textures\container2_specular.png" />
+    <Image Include="res\Textures\matrix.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

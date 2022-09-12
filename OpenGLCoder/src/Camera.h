@@ -31,6 +31,9 @@ public:
 	
 	~Camera();
 
+	float screenWidth = 800.0f;
+	float screenHeight = 600.0f;
+
 	// camera Attributes
 	glm::vec3 Position;
 	glm::vec3 Front;

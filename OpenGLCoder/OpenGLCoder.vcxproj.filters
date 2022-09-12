@@ -69,6 +69,9 @@
     <ClCompile Include="src\Camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\test\LightingTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -980,6 +983,9 @@
     <ClInclude Include="src\Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\test\LightingTest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\glm\detail\func_common.inl">
@@ -1399,14 +1405,25 @@
     <None Include="src\vendor\glm\gtx\wrap.inl">
       <Filter>头文件</Filter>
     </None>
-    <None Include="res\shaders\Basic.shader" />
-    <None Include="res\shaders\TransformBox.shader" />
+    <None Include="res\shaders\Transform\Basic.shader" />
+    <None Include="res\shaders\Transform\TransformBox.shader" />
+    <None Include="res\shaders\Lighting\Lighting.shader" />
+    <None Include="res\shaders\Lighting\LightCube.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\awesomeface.png">
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="res\Textures\container.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\Textures\container2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\Textures\container2_specular.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\Textures\matrix.jpg">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

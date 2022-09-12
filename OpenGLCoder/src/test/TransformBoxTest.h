@@ -22,9 +22,6 @@ namespace test {
 
 		unsigned int VAO, VBO;
 
-		float screenWidth = 800.0f;
-		float screenHeight = 600.0f;
-
 		std::unique_ptr<Camera> camera;
 
 		float cameraSpeed;

@@ -5,6 +5,7 @@
 
 #include "test/TransformTest.h"
 #include "test/TransformBoxTest.h"
+#include "test/LightingTest.h"
 
 namespace test {
 
@@ -12,7 +13,9 @@ namespace test {
 		:m_CurrentTest(testCurrentPointer)
 	{
 		RegisterTest<test::TransformTest>("Transform Texture");
-		RegisterTest<test::TransformBoxTest>("TransformBox Texture");
+		RegisterTest<test::TransformBoxTest>("Transform Box");
+		RegisterTest<test::LightingTest>("Lighting Test");
+		
 	}
 
 	TestMenu::~TestMenu()
