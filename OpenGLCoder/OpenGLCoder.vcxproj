@@ -131,6 +131,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>src;src/vendor;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLAD\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +149,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>src;src/vendor;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLAD\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,6 +161,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\light caster\SpotLight.cpp" />
+    <ClCompile Include="src\light caster\PointLight.cpp" />
     <ClCompile Include="src\light caster\DirectionLight.cpp" />
     <ClCompile Include="src\light caster\Light.cpp" />
     <ClCompile Include="src\test\LightingTest.cpp" />
@@ -182,6 +186,8 @@
     <ClCompile Include="src\test\TransformBoxTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\light caster\SpotLight.h" />
+    <ClInclude Include="src\light caster\PointLight.h" />
     <ClInclude Include="src\light caster\DirectionLight.h" />
     <ClInclude Include="src\light caster\Light.h" />
     <ClInclude Include="src\test\LightingTest.h" />

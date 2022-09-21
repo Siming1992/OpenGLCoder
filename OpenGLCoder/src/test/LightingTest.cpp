@@ -1,9 +1,10 @@
 #include "LightingTest.h"
+#include <format>
 
 namespace test {
 	LightingTest::LightingTest()
 	{
-		camera = std::make_shared<Camera>(glm::vec3(-3.0f, 3.0f, 10.0f));
+		camera = std::make_shared<Camera>(glm::vec3(0.0f, 0.0f, 10.0f));
 
 		Renderer::SceneCamera = camera;
 
@@ -89,9 +90,41 @@ namespace test {
 		lightingShader->SetInt("material.emission", 2);
 		emission->Bind(2);
 
-		dir = std::make_unique<light::DirectionLight>(glm::vec3(1), glm::vec3(0, 5, -3.0));
+		// directional light
+		lightingShader->SetVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
+		lightingShader->SetVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
+		lightingShader->SetVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+		lightingShader->SetVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
-		dirLightPos = glm::vec3(1.2f, 1.0f, 2.0f);
+		dir = std::make_unique<light::DirectionLight>(glm::vec3(0.5, 0.3, 0.1), glm::vec3(0, 5, -3.0));
+
+		for (int i = 0; i < 4; i++)
+		{
+			point[i] = std::make_unique<light::PointLight>(glm::vec3(1.0, 1.0, 0.0), pointLightPositions[i]);
+			//PointLight初始化的时候bing了别的shader，这里一定要再bind一遍- -
+			lightingShader->Bind();
+			lightingShader->SetVec3(std::format("pointLights[{}].position",i), pointLightPositions[i]);
+			lightingShader->SetVec3(std::format("pointLights[{}].ambient",i), 0.05f, 0.05f, 0.05f);
+			lightingShader->SetVec3(std::format("pointLights[{}].diffuse",i), 0.8f, 0.8f, 0.8f);
+			lightingShader->SetVec3(std::format("pointLights[{}].specular",i), 1.0f, 1.0f, 1.0f);
+			lightingShader->SetFloat(std::format("pointLights[{}].constant",i), 1.0f);
+			lightingShader->SetFloat(std::format("pointLights[{}].linear",i), 0.09f);
+			lightingShader->SetFloat(std::format("pointLights[{}].quadratic",i), 0.032f);
+		}
+
+		spot = std::make_unique<light::SpotLight>(glm::vec3(0.0, 1.0, 1.0), camera->Position, camera->Front);
+		lightingShader->Bind();
+
+		lightingShader->SetVec3("spotLight.position", camera->Position);
+		lightingShader->SetVec3("spotLight.direction", camera->Front);
+		lightingShader->SetVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
+		lightingShader->SetVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
+		lightingShader->SetVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
+		lightingShader->SetFloat("spotLight.constant", 1.0f);
+		lightingShader->SetFloat("spotLight.linear", 0.09f);
+		lightingShader->SetFloat("spotLight.quadratic", 0.032f);
+		lightingShader->SetFloat("spotLight.cutOff", glm::cos(glm::radians(7.5f)));
+		lightingShader->SetFloat("spotLight.outerCutOff", glm::cos(glm::radians(10.0f)));
 	}
 	LightingTest::~LightingTest()
 	{
@@ -108,8 +141,6 @@ namespace test {
 
 		// be sure to activate shader when setting uniforms/drawing objects
 		lightingShader->Bind();
-		//lightingShader->SetVec3("objectColor", 1.0f, 0.5f, 0.31f);
-		//lightingShader->SetVec3("lightColor", 1.0f, 1.0f, 1.0f);
 
 		// view/projection transformations
 		glm::mat4 projection = camera->GetProjMatrix();
@@ -117,29 +148,37 @@ namespace test {
 		lightingShader->SetMat4("proj", projection);
 		lightingShader->SetMat4("view", view);
 
-		// world transformation
-		glm::mat4 model = glm::mat4(1.0f);
-		float angle = glfwGetTime() * 25.0f;
-		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-		//如果模型矩阵执行了不等比缩放，顶点的改变会导致法向量不再垂直于表面了。因此，我们不能用这样的模型矩阵来变换法向量。
-		//法线矩阵被定义为「模型矩阵左上角3x3部分的逆矩阵的转置矩阵」
-		glm::mat3 normalMat = glm::transpose(glm::inverse(view * model));
-		lightingShader->SetMat4("model", model);
-		lightingShader->SetMat3("normalMat", normalMat);
-
-		// directional light
-		lightingShader->SetVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
-		lightingShader->SetVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
-		lightingShader->SetVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
-		lightingShader->SetVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
-
 		// render the cube
 		glBindVertexArray(cubeVAO);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		for (unsigned int i = 0; i < 10; i++)
+		{
+			// world transformation
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::translate(model, cubePositions[i]);
+			float angle = 25 * i;
+			if (i % 3 == 0)  
+				angle = glfwGetTime() * 25.0f;
+			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+			lightingShader->SetMat4("model", model);
+			//如果模型矩阵执行了不等比缩放，顶点的改变会导致法向量不再垂直于表面了。因此，我们不能用这样的模型矩阵来变换法向量。
+			//法线矩阵被定义为「模型矩阵左上角3x3部分的逆矩阵的转置矩阵」
+			glm::mat3 normalMat = glm::transpose(glm::inverse(view * model));
+			lightingShader->SetMat4("model", model);
+			lightingShader->SetMat3("normalMat", normalMat);
+
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
 
 		// also draw the lamp object
 
 		dir->OnRender();
+		for (int i = 0; i < 4; i++)
+		{
+			point[i]->OnRender();
+		}
+		spot->OnRender();
 	}
 	void LightingTest::OnImGuiRender()
 	{
@@ -160,8 +199,6 @@ namespace test {
 		//lightingShader->SetVec3("light.ambient", 0.2f, 0.2f, 0.2f);
 		//lightingShader->SetVec3("light.diffuse", 0.5f, 0.5f, 0.5f); // 将光照调暗了一些以搭配场景
 		//lightingShader->SetVec3("light.specular", 1.0f, 1.0f, 1.0f);
-
-		lightingShader->SetVec3("lightPos", dirLightPos);
 	}
 	void LightingTest::processInput(GLFWwindow* window)
 	{
