@@ -30,6 +30,11 @@ glm::mat4 Camera::GetViewMatrix()
 	return lookAt(Position, Position + Front, Up);
 }
 
+glm::mat4 Camera::GetProjMatrix()
+{
+	return glm::perspective(glm::radians(Zoom), screenWidth / screenHeight, 0.1f, 100.0f);
+}
+
 glm::mat4 Camera::lookAt(glm::vec3 const& eye, glm::vec3 const& center, glm::vec3 const& up)
 {
 	return glm::lookAt(Position, Position + Front, Up);

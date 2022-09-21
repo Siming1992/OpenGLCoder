@@ -72,6 +72,12 @@
     <ClCompile Include="src\test\LightingTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\light caster\Light.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\light caster\DirectionLight.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -984,6 +990,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\test\LightingTest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light caster\Light.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\light caster\DirectionLight.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

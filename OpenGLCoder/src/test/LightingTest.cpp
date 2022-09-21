@@ -3,10 +3,11 @@
 namespace test {
 	LightingTest::LightingTest()
 	{
-		camera = std::make_unique<Camera>(glm::vec3(-3.0f, 3.0f, 10.0f));
+		camera = std::make_shared<Camera>(glm::vec3(-3.0f, 3.0f, 10.0f));
+
+		Renderer::SceneCamera = camera;
 
 		lightingShader = std::make_unique<Shader>("res/shaders/Lighting/Lighting.shader");
-		lightCubeShader = std::make_unique<Shader>("res/shaders/Lighting/LightCube.shader");
 
         // set up vertex data (and buffer(s)) and configure vertex attributes
         // ------------------------------------------------------------------
@@ -73,14 +74,6 @@ namespace test {
 		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 		glEnableVertexAttribArray(2);
 
-		//-------------然后绑定lightVAO-----------------
-		glGenVertexArrays(1, &lightPointVAO);
-		glBindVertexArray(lightPointVAO);
-		// 只需要绑定VBO不用再次设置VBO的数据，因为箱子的VBO数据中已经包含了正确的立方体顶点数据
-		//glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(0);
-
 		glEnable(GL_DEPTH_TEST);
 
 		diffuse = std::make_unique<Texture>("res/Textures/container2.png",GL_RGBA);
@@ -96,10 +89,13 @@ namespace test {
 		lightingShader->SetInt("material.emission", 2);
 		emission->Bind(2);
 
-		lightPos = glm::vec3(1.2f, 1.0f, 2.0f);
+		dir = std::make_unique<light::DirectionLight>(glm::vec3(1), glm::vec3(0, 5, -3.0));
+
+		dirLightPos = glm::vec3(1.2f, 1.0f, 2.0f);
 	}
 	LightingTest::~LightingTest()
 	{
+		Renderer::SceneCamera = NULL;
 	}
 	void LightingTest::OnUpdate(float delta)
 	{
@@ -116,7 +112,7 @@ namespace test {
 		//lightingShader->SetVec3("lightColor", 1.0f, 1.0f, 1.0f);
 
 		// view/projection transformations
-		glm::mat4 projection = glm::perspective(glm::radians(camera->Zoom), camera->screenWidth / camera->screenHeight, 0.1f, 100.0f);
+		glm::mat4 projection = camera->GetProjMatrix();
 		glm::mat4 view = camera->GetViewMatrix();
 		lightingShader->SetMat4("proj", projection);
 		lightingShader->SetMat4("view", view);
@@ -130,45 +126,42 @@ namespace test {
 		glm::mat3 normalMat = glm::transpose(glm::inverse(view * model));
 		lightingShader->SetMat4("model", model);
 		lightingShader->SetMat3("normalMat", normalMat);
-		//lightingShader->SetVec3("viewPos", camera->Position);
+
+		// directional light
+		lightingShader->SetVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
+		lightingShader->SetVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
+		lightingShader->SetVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+		lightingShader->SetVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
 		// render the cube
 		glBindVertexArray(cubeVAO);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		// also draw the lamp object
-		lightCubeShader->Bind();
-		lightCubeShader->SetMat4("proj", projection);
-		lightCubeShader->SetMat4("view", view);
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, lightPos);
-		model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
-		lightCubeShader->SetMat4("model", model);
 
-		glBindVertexArray(lightPointVAO);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		dir->OnRender();
 	}
 	void LightingTest::OnImGuiRender()
 	{
-		float lightPosition[] = { lightPos[0],lightPos[1],lightPos[2]};
+		//float lightPosition[] = { lightPos[0],lightPos[1],lightPos[2]};
 
 		ImGui::Begin("Basic Lighting");
 		//ImGui::SliderFloat("ambient Strength", &ambientStrength, 0.0f, 1.0f);
 		//ImGui::SliderFloat("specular Strength", &specularStrength, 0.0f, 1.0f);
 		
-		ImGui::InputFloat3("light Position", lightPosition);
+		//ImGui::InputFloat3("light Position", lightPosition);
 		ImGui::End();
 
-		lightPos = glm::vec3(lightPosition[0], lightPosition[1], lightPosition[2]);
+		//lightPos = glm::vec3(lightPosition[0], lightPosition[1], lightPosition[2]);
 		
 		lightingShader->Bind(); 
 		lightingShader->SetFloat("material.shininess", 64.0f);
 
-		lightingShader->SetVec3("light.ambient", 0.2f, 0.2f, 0.2f);
-		lightingShader->SetVec3("light.diffuse", 0.5f, 0.5f, 0.5f); // 将光照调暗了一些以搭配场景
-		lightingShader->SetVec3("light.specular", 1.0f, 1.0f, 1.0f);
+		//lightingShader->SetVec3("light.ambient", 0.2f, 0.2f, 0.2f);
+		//lightingShader->SetVec3("light.diffuse", 0.5f, 0.5f, 0.5f); // 将光照调暗了一些以搭配场景
+		//lightingShader->SetVec3("light.specular", 1.0f, 1.0f, 1.0f);
 
-		lightingShader->SetVec3("lightPos", lightPos);
+		lightingShader->SetVec3("lightPos", dirLightPos);
 	}
 	void LightingTest::processInput(GLFWwindow* window)
 	{

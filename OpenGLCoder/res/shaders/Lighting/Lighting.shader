@@ -57,32 +57,81 @@ struct Material {
 
 uniform Material material;
 
-struct Light {
-	//vec3 position;
+struct DirLight {
+	vec3 direction;
 
 	vec3 ambient;
 	vec3 diffuse;
 	vec3 specular;
 };
 
-uniform Light light;
+uniform DirLight dirLight;
+
+struct PointLight {
+	vec3 position;
+
+	float constant;
+	float linear;
+	float quadratic;
+
+	vec3 ambient;
+	vec3 diffuse;
+	vec3 specular;
+};
+#define NR_POINT_LIGHTS 4
+uniform PointLight pointLights[NR_POINT_LIGHTS];
+
+// function prototypes
+vec3 GetDirLight(DirLight light, vec3 normal, vec3 viewDir);
+vec3 GetPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+//vec3 GetSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 void main()
 {
-	vec3 ambient = texture(material.diffuse, TexCoords).rgb * light.ambient;
+	//vec3 ambient = texture(material.diffuse, TexCoords).rgb * light.ambient;
+
+	//vec3 normal = normalize(Normal);
+	//vec3 lightDir = normalize(LightPos - FragPos);
+	//float diff = max(dot(lightDir, normal), 0);
+	//vec3 diffuse = light.diffuse * (diff * texture(material.diffuse, TexCoords).rgb);
+
+	//vec3 viewDir = normalize(-FragPos);
+	//vec3 reflectDir = reflect(-lightDir, normal);
+	//float spec = pow(max(dot(viewDir, reflectDir), 0.0f), material.shininess);
+	////float spec = max(dot(viewDir, reflectDir), 0.0);
+	//vec3 specular = light.specular * (spec * texture(material.specular, TexCoords).rgb);
+
+	//vec3 emission = texture(material.emission, TexCoords).rgb;
 
 	vec3 normal = normalize(Normal);
-	vec3 lightDir = normalize(LightPos - FragPos);
-	float diff = max(dot(lightDir, normal), 0);
-	vec3 diffuse = light.diffuse * (diff * texture(material.diffuse, TexCoords).rgb);
-
 	vec3 viewDir = normalize(-FragPos);
+	vec3 dir = GetDirLight(dirLight, normal, viewDir);
+
+	vec3 point = vec3(0.0, 0.0, 0.0);
+	for (int i = 0; i < NR_POINT_LIGHTS; i++)
+	{
+		//point = GetPointLight();
+	}
+
+	vec3 spot = vec3(0.0, 0.0, 0.0);
+
+	FragColor = vec4((dir + point + spot), 1.0f);
+}
+
+vec3 GetDirLight(DirLight light,vec3 normal,vec3 viewDir) {
+	vec3 lightDir = normalize(-light.direction);
+	// 漫反射着色
+	float diff = max(dot(normal, lightDir), 0.0);
+	// 镜面光着色
 	vec3 reflectDir = reflect(-lightDir, normal);
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0f), material.shininess);
-	//float spec = max(dot(viewDir, reflectDir), 0.0);
-	vec3 specular = light.specular * (spec * texture(material.specular, TexCoords).rgb);
+	float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+	// 合并结果
+	vec3 ambient = light.ambient * vec3(texture(material.diffuse, TexCoords));
+	vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TexCoords));
+	vec3 specular = light.specular * spec * vec3(texture(material.specular, TexCoords));
+	return (ambient + diffuse + specular);
+}
 
-	vec3 emission = texture(material.emission, TexCoords).rgb;
-
-	FragColor = vec4((ambient + diffuse + specular + emission), 1.0f);
+vec3 GetPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
+	return vec3(0.0, 0.0, 0.0);
 }
