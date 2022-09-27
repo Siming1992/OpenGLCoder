@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\test\DepthTestingTest.cpp" />
     <ClCompile Include="src\Model.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\light caster\SpotLight.cpp" />
@@ -189,6 +190,7 @@
     <ClCompile Include="src\test\TransformBoxTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\test\DepthTestingTest.h" />
     <ClInclude Include="src\Model.h" />
     <ClInclude Include="src\Mesh.h" />
     <ClInclude Include="src\light caster\SpotLight.h" />
@@ -502,6 +504,7 @@
     <ClInclude Include="src\test\TransformBoxTest.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shaders\DepthTesting\depthTesting.shader" />
     <None Include="res\shaders\Lighting\LightCube.shader" />
     <None Include="res\shaders\Lighting\Lighting.shader" />
     <None Include="res\shaders\Model\Default.shader" />

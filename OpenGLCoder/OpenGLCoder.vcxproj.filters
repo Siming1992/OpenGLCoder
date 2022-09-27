@@ -93,6 +93,9 @@
     <ClCompile Include="src\test\ModelTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\test\DepthTestingTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -1028,6 +1031,9 @@
     <ClInclude Include="src\test\ModelTest.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\test\DepthTestingTest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\glm\detail\func_common.inl">
@@ -1452,6 +1458,7 @@
     <None Include="res\shaders\Lighting\Lighting.shader" />
     <None Include="res\shaders\Lighting\LightCube.shader" />
     <None Include="res\shaders\Model\Default.shader" />
+    <None Include="res\shaders\DepthTesting\depthTesting.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\awesomeface.png">
