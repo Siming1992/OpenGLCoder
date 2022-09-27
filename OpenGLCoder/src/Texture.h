@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Renderer.h"
+#include <glad/glad.h>
+#include <iostream>
+#include <string>
 
 class Texture
 {
@@ -11,7 +13,7 @@ public:
 	unsigned int m_RendererID;
 	std::string m_FilePath;
 
-	Texture(const std::string& path,GLint format = GL_RGB,GLint wrapMode = GL_REPEAT);
+	Texture(const std::string& path,GLint wrapMode = GL_REPEAT);
 	~Texture();
 
 	void Bind(unsigned int slot = 0) const;

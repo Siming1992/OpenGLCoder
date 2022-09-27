@@ -62,8 +62,8 @@ namespace test {
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		shader->Bind(); // 不要忘记在设置uniform变量之前激活着色器程序！
-		texture1 = std::make_unique<Texture>("res/Textures/container.jpg", GL_RGB, GL_CLAMP_TO_EDGE);
-		texture2 = std::make_unique<Texture>("res/Textures/awesomeface.png", GL_RGBA, GL_MIRRORED_REPEAT);
+		texture1 = std::make_unique<Texture>("res/Textures/container.jpg", GL_CLAMP_TO_EDGE);
+		texture2 = std::make_unique<Texture>("res/Textures/awesomeface.png", GL_MIRRORED_REPEAT);
 		glUniform1i(glGetUniformLocation(shader->m_RendererID, "texture1"), 0); // 手动设置
 		shader->SetInt("texture2", 1); // 或者使用着色器类设置
 

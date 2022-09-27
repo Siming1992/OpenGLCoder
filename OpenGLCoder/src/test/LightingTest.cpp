@@ -77,8 +77,8 @@ namespace test {
 
 		glEnable(GL_DEPTH_TEST);
 
-		diffuse = std::make_unique<Texture>("res/Textures/container2.png",GL_RGBA);
-		specular = std::make_unique<Texture>("res/Textures/container2_specular.png", GL_RGBA);
+		diffuse = std::make_unique<Texture>("res/Textures/container2.png");
+		specular = std::make_unique<Texture>("res/Textures/container2_specular.png");
 		emission = std::make_unique<Texture>("res/Textures/matrix.jpg");
 		// shader configuration
 		// --------------------

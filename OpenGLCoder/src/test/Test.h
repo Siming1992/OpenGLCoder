@@ -26,6 +26,8 @@ namespace test {
 		virtual void mouse_callback(GLFWwindow* window, double xpos, double ypos) {};
 		virtual void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {};
 
+	protected:
+		float deltaTime;
 	};
 
 

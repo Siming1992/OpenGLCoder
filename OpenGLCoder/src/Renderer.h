@@ -5,6 +5,8 @@
 #include <memory>
 
 #include "Shader.h"
+#include "Mesh.h"
+
 #include "Camera.h"
 
 

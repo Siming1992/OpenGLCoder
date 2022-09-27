@@ -75,8 +75,8 @@ namespace test {
 		glEnable(GL_DEPTH_TEST);
 
 		shader->Bind();
-		texture1 = std::make_unique<Texture>("res/Textures/container.jpg", GL_RGB, GL_CLAMP_TO_EDGE);
-		texture2 = std::make_unique<Texture>("res/Textures/awesomeface.png", GL_RGBA, GL_MIRRORED_REPEAT);
+		texture1 = std::make_unique<Texture>("res/Textures/container.jpg", GL_CLAMP_TO_EDGE);
+		texture2 = std::make_unique<Texture>("res/Textures/awesomeface.png", GL_MIRRORED_REPEAT);
 
 		shader->SetInt("texture1", 0);
 		shader->SetInt("texture2", 1);

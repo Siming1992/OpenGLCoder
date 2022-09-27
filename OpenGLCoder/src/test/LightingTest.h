@@ -58,7 +58,6 @@ namespace test{
 		float specularStrength = 0.5f;
 
 
-		float deltaTime;
 	private:
 	};
 

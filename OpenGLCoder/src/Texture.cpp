@@ -2,7 +2,7 @@
 
 #include "stb_image/stb_image.h"
 
-Texture::Texture(const std::string& path,GLint format,GLint wrapMode)
+Texture::Texture(const std::string& path,GLint wrapMode)
 	:m_RendererID(0), m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_Channels(0)
 {
 
@@ -17,10 +17,18 @@ Texture::Texture(const std::string& path,GLint format,GLint wrapMode)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	// load image, create texture and generate mipmaps
-	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
+	stbi_set_flip_vertically_on_load(false); // tell stb_image.h to flip loaded texture's on the y-axis.
 	m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_Channels, 0);
 	if (m_LocalBuffer)
 	{
+		GLenum format;
+		if (m_Channels == 1)
+			format = GL_RED;
+		else if (m_Channels == 3)
+			format = GL_RGB;
+		else if (m_Channels == 4)
+			format = GL_RGBA;
+
 		glTexImage2D(GL_TEXTURE_2D, 0, format, m_Width, m_Height, 0, format, GL_UNSIGNED_BYTE, m_LocalBuffer);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}

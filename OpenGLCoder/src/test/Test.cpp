@@ -6,6 +6,7 @@
 #include "test/TransformTest.h"
 #include "test/TransformBoxTest.h"
 #include "test/LightingTest.h"
+#include "test/ModelTest.h"
 
 namespace test {
 
@@ -15,6 +16,7 @@ namespace test {
 		RegisterTest<test::TransformTest>("Transform Texture");
 		RegisterTest<test::TransformBoxTest>("Transform Box");
 		RegisterTest<test::LightingTest>("Lighting Test");
+		RegisterTest<test::ModelTest>("Model Test");
 		
 	}
 
