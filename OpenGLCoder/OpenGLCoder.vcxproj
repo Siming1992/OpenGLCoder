@@ -505,6 +505,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\DepthTesting\depthTesting.shader" />
+    <None Include="res\shaders\DepthTesting\singleColor.shader" />
     <None Include="res\shaders\Lighting\LightCube.shader" />
     <None Include="res\shaders\Lighting\Lighting.shader" />
     <None Include="res\shaders\Model\Default.shader" />

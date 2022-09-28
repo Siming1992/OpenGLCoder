@@ -17,6 +17,7 @@ namespace test {
 		void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) override;
 	private:
 		std::unique_ptr<Shader> shader;
+		std::unique_ptr<Shader> shaderSingleColor;
 		std::unique_ptr<Camera> camera;
 
 		glm::mat4 model = glm::mat4(1.0f);
