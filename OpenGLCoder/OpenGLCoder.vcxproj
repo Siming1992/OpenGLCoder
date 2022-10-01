@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\test\FramebuffersTest.cpp" />
     <ClCompile Include="src\test\BlendingTest.cpp" />
     <ClCompile Include="src\test\DepthTestingTest.cpp" />
     <ClCompile Include="src\Model.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="src\test\TransformBoxTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\test\FramebuffersTest.h" />
     <ClInclude Include="src\test\BlendingTest.h" />
     <ClInclude Include="src\test\DepthTestingTest.h" />
     <ClInclude Include="src\Model.h" />
@@ -508,6 +510,7 @@
   <ItemGroup>
     <None Include="res\shaders\DepthTesting\depthTesting.shader" />
     <None Include="res\shaders\DepthTesting\singleColor.shader" />
+    <None Include="res\shaders\Framebuffers\framebuffers.shader" />
     <None Include="res\shaders\Lighting\LightCube.shader" />
     <None Include="res\shaders\Lighting\Lighting.shader" />
     <None Include="res\shaders\Model\Default.shader" />

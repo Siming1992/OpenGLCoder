@@ -9,6 +9,7 @@
 #include "test/ModelTest.h"
 #include "test/DepthTestingTest.h"
 #include "test/BlendingTest.h"
+#include "test/FramebuffersTest.h"
 
 namespace test {
 
@@ -21,6 +22,7 @@ namespace test {
 		RegisterTest<test::ModelTest>("Model Test");
 		RegisterTest<test::DepthTestingTest>("DepthTesting Test");
 		RegisterTest<test::BlendingTest>("Blending Test");
+		RegisterTest<test::FramebuffersTest>("Framebuffers Test");
 		
 	}
 
