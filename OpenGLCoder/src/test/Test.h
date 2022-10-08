@@ -6,6 +6,7 @@
 
 #include "Renderer.h"
 #include "Texture.h"
+#include "CubeMap.h"
 
 #include <imgui/imgui.h>
 #include "imgui/imgui_impl_glfw.h"

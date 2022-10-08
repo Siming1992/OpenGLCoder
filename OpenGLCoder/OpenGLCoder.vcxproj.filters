@@ -102,6 +102,12 @@
     <ClCompile Include="src\test\FramebuffersTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\CubeMap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\CubeMapTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -1046,6 +1052,12 @@
     <ClInclude Include="src\test\FramebuffersTest.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\CubeMap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\test\CubeMapTest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\glm\detail\func_common.inl">
@@ -1473,6 +1485,9 @@
     <None Include="res\shaders\DepthTesting\depthTesting.shader" />
     <None Include="res\shaders\DepthTesting\singleColor.shader" />
     <None Include="res\shaders\Framebuffers\framebuffers.shader" />
+    <None Include="res\shaders\CubeMap\depthTesting.shader" />
+    <None Include="res\shaders\CubeMap\skybox.shader" />
+    <None Include="res\shaders\CubeMap\cubemap.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\awesomeface.png">
