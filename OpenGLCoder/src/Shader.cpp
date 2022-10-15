@@ -99,7 +99,7 @@ ShaderProgramSource Shader::ParseShader(const std::string& filePath)
 			else if (line.find("fragment") != std::string::npos)
 				type = ShaderType::FRAGMENT;
 			else if (line.find("geometry") != std::string::npos)
-				type == ShaderType::GEOMETRY;
+				type = ShaderType::GEOMETRY;
 		}
 		else
 		{

@@ -172,6 +172,7 @@
     <ClCompile Include="src\light caster\PointLight.cpp" />
     <ClCompile Include="src\light caster\DirectionLight.cpp" />
     <ClCompile Include="src\light caster\Light.cpp" />
+    <ClCompile Include="src\test\GeometryShaderTest.cpp" />
     <ClCompile Include="src\test\LightingTest.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Application.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="src\light caster\PointLight.h" />
     <ClInclude Include="src\light caster\DirectionLight.h" />
     <ClInclude Include="src\light caster\Light.h" />
+    <ClInclude Include="src\test\GeometryShaderTest.h" />
     <ClInclude Include="src\test\LightingTest.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\Renderer.h" />
@@ -518,6 +520,8 @@
     <None Include="res\shaders\DepthTesting\depthTesting.shader" />
     <None Include="res\shaders\DepthTesting\singleColor.shader" />
     <None Include="res\shaders\Framebuffers\framebuffers.shader" />
+    <None Include="res\shaders\GeometryShader\explodeShader.shader" />
+    <None Include="res\shaders\GeometryShader\houseShader.shader" />
     <None Include="res\shaders\Lighting\LightCube.shader" />
     <None Include="res\shaders\Lighting\Lighting.shader" />
     <None Include="res\shaders\Model\Default.shader" />

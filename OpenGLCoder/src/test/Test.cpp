@@ -11,6 +11,7 @@
 #include "test/BlendingTest.h"
 #include "test/FramebuffersTest.h"
 #include "test/CubeMapTest.h"
+#include "test/GeometryShaderTest.h"
 
 namespace test {
 
@@ -25,6 +26,7 @@ namespace test {
 		RegisterTest<test::BlendingTest>("Blending Test");
 		RegisterTest<test::FramebuffersTest>("Framebuffers Test");
 		RegisterTest<test::CubeMapTest>("CubeMapTest Test");
+		RegisterTest<test::GeometryShaderTest>("GeometryShader Test");
 		
 	}
 
