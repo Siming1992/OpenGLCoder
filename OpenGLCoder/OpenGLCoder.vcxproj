@@ -161,6 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\test\InstanceTest.cpp" />
     <ClCompile Include="src\test\CubeMapTest.cpp" />
     <ClCompile Include="src\CubeMap.cpp" />
     <ClCompile Include="src\test\FramebuffersTest.cpp" />
@@ -195,6 +196,7 @@
     <ClCompile Include="src\test\TransformBoxTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\test\InstanceTest.h" />
     <ClInclude Include="src\test\CubeMapTest.h" />
     <ClInclude Include="src\CubeMap.h" />
     <ClInclude Include="src\test\FramebuffersTest.h" />
@@ -522,6 +524,7 @@
     <None Include="res\shaders\Framebuffers\framebuffers.shader" />
     <None Include="res\shaders\GeometryShader\explodeShader.shader" />
     <None Include="res\shaders\GeometryShader\houseShader.shader" />
+    <None Include="res\shaders\Instance\instance.shader" />
     <None Include="res\shaders\Lighting\LightCube.shader" />
     <None Include="res\shaders\Lighting\Lighting.shader" />
     <None Include="res\shaders\Model\Default.shader" />

@@ -12,6 +12,7 @@
 #include "test/FramebuffersTest.h"
 #include "test/CubeMapTest.h"
 #include "test/GeometryShaderTest.h"
+#include "test/InstanceTest.h"
 
 namespace test {
 
@@ -27,6 +28,7 @@ namespace test {
 		RegisterTest<test::FramebuffersTest>("Framebuffers Test");
 		RegisterTest<test::CubeMapTest>("CubeMapTest Test");
 		RegisterTest<test::GeometryShaderTest>("GeometryShader Test");
+		RegisterTest<test::InstanceTest>("Instance Test");
 		
 	}
 
